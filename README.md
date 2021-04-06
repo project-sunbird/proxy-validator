@@ -23,3 +23,9 @@ docker build -t tagName:version .
 ```
 docker run -p 9090:9090 -d tagName:version
 ```
+
+* Use yaml-merge to merge your api files, install dependency and merge files usig below commands
+```
+npm install -g @alexlafroscia/yaml-merge
+yaml-merge file1 file2 file3 ... filen > spec.yml
+```
