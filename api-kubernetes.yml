@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: proxyvalidator
+  name: proxyvalidator
+  namespace: dev
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: proxyvalidator
+  template:
+    metadata:
+      annotations:
+      labels:
+        app: proxyvalidator
+    spec:
+      containers:
+      - image: sunbird/proxyvalidator:1
+        imagePullPolicy: Always
+        name: proxyvalidator
+        ports:
+        - containerPort: 9090
+          name: proxyvalidator
+          protocol: TCP
+      dnsPolicy: ClusterFirst
+      imagePullSecrets:
+      - name: devregistrysecret
+      restartPolicy: Always
