@@ -7,3 +7,8 @@ This Repo will validate the OPEN API - 3.0 Spec against the incoming request and
 npm install
 node proxy.js
 ```
+
+* Build using a docker container
+```
+docker build -t tagName:version .
+```
