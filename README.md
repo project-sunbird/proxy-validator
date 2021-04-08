@@ -30,3 +30,8 @@ docker run -p 9090:9090 -d tagName:version
 npm install -g @alexlafroscia/yaml-merge
 yaml-merge file1 file2 file3 ... fileN > spec.yml
 ```
+
+* To try it in kubernetes cluster we have a kubernetes deployment manifest which deploys the proxyvalodator in dev namespace, customize it according to your needs.Z
+```
+kubectl apply -f api-kubernetes.yml
+```
