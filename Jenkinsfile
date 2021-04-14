@@ -21,10 +21,15 @@ node('build-slave') {
                 echo "build_tag: " + build_tag
 
                 stage('Generate the Single API Spec File') {
-                    git clone "${docs_repo_url}" -b "${docs_repo_branch}" docsRepo
-                    sh 'git log -1'
-                    bash -x docsRepo/automationScripts/proxyvalidator.sh
-                    cp -r docsRepo/automationScripts/spec.yml .
+                  sh 'rm -rf docsRepo; mkdir -p docsRepo'
+                  dir("docsRepo")
+                  {
+                      git branch: "${docs_repo_branch}",
+                      url: 'docs_repo_url'
+                  }
+
+                  sh '''bash -x docsRepo/automationScripts/proxyvalidator.sh
+                  cp -r docsRepo/automationScripts/spec.yml .'''
                 }
                 stage('Package') {
                     sh('chmod 777 ./buildproxyvalidator.sh')
