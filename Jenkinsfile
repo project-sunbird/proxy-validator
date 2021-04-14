@@ -36,7 +36,7 @@ node('build-slave') {
                     sh("./buildproxyvalidator.sh ${build_tag} ${env.NODE_NAME} ${hub_org}")
                 }
                 stage('ArchiveArtifacts') {
-                    archiveArtifacts "metadata.json"
+                    archiveArtifacts "proxyvalidatormetadata.json"
                     currentBuild.description = "${build_tag}"
                 }
         }
