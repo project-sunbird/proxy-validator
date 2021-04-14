@@ -21,7 +21,7 @@ node('build-slave') {
                 echo "build_tag: " + build_tag
 
                 stage('Generate the Single API Spec File') {
-                    git clone ${docs_repo_url} -b ${docs_repo_branch} docsRepo
+                    git clone "${docs_repo_url}" -b "${docs_repo_branch}" docsRepo
                     sh 'git log -1'
                     bash -x docsRepo/automationScripts/proxyvalidator.sh
                     cp -r docsRepo/automationScripts/spec.yml .
