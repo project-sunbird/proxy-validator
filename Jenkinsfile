@@ -28,7 +28,7 @@ node('build-slave') {
                       url: "${docs_repo_url}"
                   }
 
-                  sh '''bash -x docsRepo/automationScripts/proxyvalidator.sh
+                  sh '''bash docsRepo/automationScripts/proxyvalidator.sh
                   cp -r docsRepo/automationScripts/spec.yml .'''
                 }
                 stage('Package') {
