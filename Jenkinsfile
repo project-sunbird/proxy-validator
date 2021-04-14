@@ -25,7 +25,7 @@ node('build-slave') {
                   dir("docsRepo")
                   {
                       git branch: "${docs_repo_branch}",
-                      url: 'docs_repo_url'
+                      url: "${docs_repo_url}"
                   }
 
                   sh '''bash -x docsRepo/automationScripts/proxyvalidator.sh
