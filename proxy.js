@@ -9,7 +9,7 @@ const app = express();
 const apiSpec = path.join(__dirname, 'spec.yml');
 var apiProxy = httpProxy.createProxyServer();
 const port = 9090
-var ignoreURLs = ['/framework/v1/read','/form/v1/read']
+var ignoreURLs = ['/framework/v1/read','/composite/v1/search']
 const API_SERVICE_URL = "http://localhost:8000";
 
 app.use(middleware);
