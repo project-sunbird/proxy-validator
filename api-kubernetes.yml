@@ -2,19 +2,19 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: proxyvalidator
-  name: proxyvalidator
+    app: apimanager
+  name: apimanager
   namespace: dev
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: proxyvalidator
+      app: apimanager
   template:
     metadata:
       annotations:
       labels:
-        app: proxyvalidator
+        app: apimanager
     spec:
       containers:
       - image: sunbird/proxyvalidator:1
