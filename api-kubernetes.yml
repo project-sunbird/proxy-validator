@@ -28,3 +28,17 @@ spec:
       imagePullSecrets:
       - name: devregistrysecret
       restartPolicy: Always
+
+apiVersion: v1
+kind: Service
+metadata:
+spec:
+  ports:
+  - name: http-proxyvalidator
+    port: 8000
+    protocol: TCP
+    targetPort: 9090
+  selector:
+    app: apimanager
+  type: ClusterIP
+
