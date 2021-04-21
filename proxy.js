@@ -23,7 +23,7 @@ try {
         extended: true,limit: '500MB'
     }));
     apiProxy.on('proxyRes', function (proxyRes, req, res) {
-        console.log("Request URL: " + req.originalUrl);
+        console.log("Request URL: " + req.originalUrl+" "+res.headers);
         var body = [];
         proxyRes.on('data', function (chunk) {
             body.push(chunk);
@@ -36,9 +36,9 @@ try {
             }
             catch (e) {
               app.use((err, req, res, next) => {
-                                console.error("Request: "+req.url+" \nError: "+err);
+                                console.error("Request: "+req.url+" \nError: "+err+" "+res.headers);
                                 res.status(err.status || 500).json({
-                                message: err.message,
+                                message: err.message+" Proxy Validator Error received here",
                                 errors: err.errors,
                   });
               });
@@ -58,7 +58,7 @@ try {
     app.use((err, req, res, next) => {
                       console.error("Request: "+req.url+" \nError: "+err);
                       res.status(err.status || 500).json({
-                      message: err.message,
+                      message: "Proxy Validator: "+err.message,
                       errors: err.errors,
         });
     });
