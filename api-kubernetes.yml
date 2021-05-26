@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: apimanager
+  name: apimanager
+  namespace: dev
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: apimanager
+  template:
+    metadata:
+      annotations:
+      labels:
+        app: apimanager
+    spec:
+      containers:
+      - image: sunbird/proxyvalidator:1
+        imagePullPolicy: Always
+        name: proxyvalidator
+        ports:
+        - containerPort: 9090
+          name: proxyvalidator
+          protocol: TCP
+      dnsPolicy: ClusterFirst
+      imagePullSecrets:
+      - name: devregistrysecret
+      restartPolicy: Always
+
+apiVersion: v1
+kind: Service
+metadata:
+spec:
+  ports:
+  - name: http-proxyvalidator
+    port: 8000
+    protocol: TCP
+    targetPort: 9090
+  selector:
+    app: apimanager
+  type: ClusterIP
+
